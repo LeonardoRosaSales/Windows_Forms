@@ -42,3 +42,4 @@ C:\Users\leonardo.rsales\source\repos\Windows_Forms\Projeto_8\obj\Debug\Projeto_
 C:\Users\leonardo.rsales\source\repos\Windows_Forms\Projeto_8\obj\Debug\Projeto_8.exe
 C:\Users\leonardo.rsales\source\repos\Windows_Forms\Projeto_8\obj\Debug\Projeto_8.pdb
 C:\Users\leonardo.rsales\source\repos\Windows_Forms\Projeto_8\obj\Debug\Projeto_8.Form1.resources
+C:\Users\leonardo.rsales\source\repos\Windows_Forms\Projeto_8\obj\Debug\Projeto_8.br.com.projeto.VIEW.frmFuncionarios.resources

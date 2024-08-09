@@ -3,6 +3,7 @@ using Projeto_8.br.com.projeto.CONEXAO;
 using Projeto_8.br.com.projeto.MODEL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,6 +62,41 @@ namespace Projeto_8.br.com.projeto.DAO
             catch (Exception erro)
             {
                 MessageBox.Show("Aconteceu o erro " + erro);
+            }
+        }
+        #endregion
+
+        #region Listar
+        public DataTable listarFuncionario()
+        {
+            try
+            {
+                //1º passo - Instanciar o DataTable
+                DataTable tabelaFuncionario = new DataTable();
+
+                //2º passo - Definir comando SQL
+                string sql = @"SELECT * FROM tb_funcionarios";
+
+                //3º passo - Organizar o comando SQL
+                MySqlCommand executarcmd = new MySqlCommand(sql, conexao);
+
+                //4º passo - Abrir conexao e executar o comando SQL
+                conexao.Open();
+                executarcmd.ExecuteNonQuery();
+
+                //5º passo - Preenchemos os dados do DataTable
+                MySqlDataAdapter dg = new MySqlDataAdapter(executarcmd);
+                dg.Fill(tabelaFuncionario);
+
+                //6º passo - Fechar Conexão
+                conexao.Close();
+
+                return tabelaFuncionario;
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Aconteceu o erro " + erro);
+                return null;
             }
         }
         #endregion

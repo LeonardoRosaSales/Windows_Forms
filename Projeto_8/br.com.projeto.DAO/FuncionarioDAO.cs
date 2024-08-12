@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Mysqlx;
 using Projeto_8.br.com.projeto.CONEXAO;
 using Projeto_8.br.com.projeto.MODEL;
 using System;
@@ -162,7 +163,7 @@ namespace Projeto_8.br.com.projeto.DAO
                 conexao.Open();
                 executarcmd.ExecuteNonQuery();
 
-                MessageBox.Show("FUncionário Excluido com Sucesso!");
+                MessageBox.Show("Funcionário Excluido com Sucesso!");
 
                 //4º Passo Fechar Conexão
                 conexao.Close();
@@ -170,6 +171,42 @@ namespace Projeto_8.br.com.projeto.DAO
             catch (Exception erro)
             {
                 MessageBox.Show("Aconteceu o erro " + erro);
+            }
+        }
+        #endregion
+
+        #region Efetuar Login
+        public bool efetuarLogin(string email, string senha)
+        {
+            try
+            {
+                //1º passo - Definir comando SQL
+                string sql = @"SELECT * FROM tb_funcionarios WHERE email=@email and senha=@senha";
+
+                //2º Passo Organizar o comando SQL
+                MySqlCommand executarcmd = new MySqlCommand(sql, conexao);
+                executarcmd.Parameters.AddWithValue("@email", email);
+                executarcmd.Parameters.AddWithValue("@senha", senha);
+
+                //3º Passo Abrir conexao e executar o comando SQL
+                conexao.Open();
+                MySqlDataReader reader = executarcmd.ExecuteReader();
+
+                if(reader.Read())
+                {
+                    MessageBox.Show("Login relizado com sucesso!");
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Email ou senha incorretos!");
+                    return false;
+                }
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Aconteceu o erro " + erro);
+                return false;
             }
         }
         #endregion
